@@ -10,7 +10,7 @@ const createStack = (objIn = {}) => {
       stackArray = [];
     },
     size: () => stackArray.length,
-    isEmpty: () => stackArray.length > 0,
+    isEmpty: () => stackArray.length === 0,
   };
 
   return Object.keys(stackMethods).reduce((obj, key) => {
