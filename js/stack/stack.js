@@ -1,4 +1,7 @@
-const createStack = (objIn = {}) => {
+'use strict';
+
+const createStack = (objIn) => {
+  const rtn = objIn || {};
   let stackArray = [];
   const stackMethods = {
     push: (toAdd) => {
@@ -10,16 +13,16 @@ const createStack = (objIn = {}) => {
       stackArray = [];
     },
     size: () => stackArray.length,
-    isEmpty: () => stackArray.length === 0,
+    isEmpty: () => stackArray.length === 0
   };
 
   return Object.keys(stackMethods).reduce((obj, key) => {
     obj[key] = stackMethods[key];
 
     return obj;
-  }, objIn);
+  }, rtn);
 };
 
-module.export = {
+module.exports = {
   newStack: createStack
 };
