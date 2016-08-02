@@ -88,3 +88,72 @@ ava.test('Linked List #insertAt', t => {
 
   t.true(ll.dump().head.next.item === 'test 1.5');
 });
+
+ava.test('Linked List #indexOf', t => {
+  const ll = linkedList.createLinkedList();
+
+  ll.append('test 1');
+  ll.append('test 2');
+  ll.append('test 3');
+  ll.append('test 4');
+
+  console.log(ll.indexOf('test 1'));
+  console.log(ll.indexOf('test 2'));
+  console.log(ll.indexOf('test 3'));
+  console.log(ll.indexOf('test 4'));
+
+  t.true(ll.indexOf('test 1') === 0);
+  t.true(ll.indexOf('test 3') === 2);
+  t.true(ll.indexOf('test 2') === 1);
+  t.true(ll.indexOf('test 4') === 3);
+  t.true(ll.indexOf('I fail hard') === -1);
+});
+
+ava.test('Linked List #removeAt', t => {
+  const ll = linkedList.createLinkedList();
+
+  ll.append('test 1');
+  ll.append('test 2');
+  ll.append('test 3');
+  ll.append('test 4');
+
+  t.true(ll.removeAt(1) === 'test 2');
+
+  t.true(ll.dump().length === 3);
+  t.true(ll.dump().head.item === 'test 1');
+  t.true(ll.dump().head.next.item === 'test 3');
+  t.true(ll.dump().head.next.next.item === 'test 4');
+
+  t.true(ll.removeAt(0) === 'test 1');
+  t.true(ll.dump().length === 2);
+
+  t.true(ll.dump().head.item === 'test 3');
+  t.true(ll.dump().head.next.item === 'test 4');
+
+});
+
+ava.test('Linked List #remove should remove an item', t => {
+    const ll = linkedList.createLinkedList();
+
+  ll.append('test 1');
+  ll.append('test 2');
+  ll.append('test 3');
+  ll.append('test 4');
+
+  ll.remove('test 1');
+
+  t.true(ll.dump().length === 3);
+  t.true(ll.dump().head.item === 'test 2');
+
+  ll.remove('test 3');
+
+  t.true(ll.dump().length === 2);
+  t.true(ll.dump().head.item === 'test 2');
+  t.true(ll.dump().head.next.item === 'test 4');
+
+  ll.remove('test 4');
+
+  t.true(ll.dump().length === 1);
+  t.true(ll.dump().head.item === 'test 2');
+  t.true(ll.dump().head.next === null);
+});
